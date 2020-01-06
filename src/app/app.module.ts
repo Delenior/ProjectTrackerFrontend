@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
-import { MatIconModule, MatToolbarModule, MatButtonModule, MatListModule, MatDividerModule, MatInputModule, MatCardModule, MatSlideToggleModule } from '@angular/material';
 import { ProjectHomeComponent } from './project-home/project-home.component';
 import { ProjectTasksComponent } from './project-tasks/project-tasks.component';
 import { NewProjectFormComponent } from './new-project-form/new-project-form.component';
@@ -15,6 +14,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProjectComponent } from './project/project.component';
 import 'hammerjs';
+import { MaterialModule } from 'src/material';
 
 @NgModule({
   declarations: [
@@ -31,15 +31,8 @@ import 'hammerjs';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatButtonModule,
     HttpClientModule,
-    MatListModule,
-    MatDividerModule,
-    MatInputModule,
-    MatCardModule,
-    MatSlideToggleModule
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

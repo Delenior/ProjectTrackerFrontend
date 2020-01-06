@@ -4,20 +4,20 @@
     <div class="example-container">
       <mat-form-field>
         <input matInput placeholder="Task Name" type="text" name="name" #name="ngModel" [(ngModel)]="task.name"
-               minlength="3" required
-               [ngClass]="{'is-valid': name.valid,
-               'is-invalid': name.invalid}">
+        minlength="3" required
+        [ngClass]="{'is-valid': name.valid && (name.dirty || name.touched),
+        'is-invalid': name.invalid && (name.dirty || name.touched)}"
+        matTooltip="Required Field, minimum 3 characters">
       </mat-form-field>
       <mat-form-field>
         <textarea matInput placeholder="Description" type="text" name="description"
                   [(ngModel)]="task.description"></textarea>
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Deadline: e.g. 2019-12-20" type="text" name="deadline" #deadline="ngModel"
-               [(ngModel)]="task.deadline" required
-               pattern="([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))"
-               [ngClass]="{'is-valid': deadline.valid,
-               'is-invalid': deadline.invalid}"
+        <input matInput placeholder="Deadline: e.g. 2019-12-20" type="text" name="deadline"     #deadline="ngModel" [(ngModel)]="task.deadline" required
+         pattern="([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))" matTooltip="Required field."
+         [ngClass]="{'is-valid': deadline.valid && (deadline.dirty || deadline.touched),
+         'is-invalid': deadline.invalid && (deadline.dirty || deadline.touched)}"
         />
       </mat-form-field>
     </div>
