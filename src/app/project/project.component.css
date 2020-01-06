@@ -1,0 +1,39 @@
+.incomplete {
+  max-width: 400px;
+  background-color: cornflowerblue;
+  color: white;
+  margin: 0.25rem 0;
+  cursor: move;
+}
+
+.complete {
+  max-width: 400px;
+  background-color: limegreen;
+  color: white;
+  margin: 0.25rem 0;
+  cursor: move;
+}
+
+.description-input-incomplete {
+  border: none;
+  background-color: cornflowerblue;
+  color: white;
+}
+
+.description-input-complete {
+  border: none;
+  background-color: limegreen;
+  color: white;
+}
+
+.cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.example-box:last-child {
+  border: none;
+}

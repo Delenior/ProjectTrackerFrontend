@@ -1,1 +1,29 @@
-<p>project-tasks works!</p>
+<ng-container *ngIf="project">
+  <button mat-raised-button (click)="setupNewTask()">New Task</button>
+  <form novalidate #form="ngForm" (ngSubmit)="onSubmit()" *ngIf="newTask">
+    <div class="example-container">
+      <mat-form-field>
+        <input matInput placeholder="Task Name" type="text" name="name" #name="ngModel" [(ngModel)]="task.name"
+               minlength="3" required
+               [ngClass]="{'is-valid': name.valid,
+               'is-invalid': name.invalid}">
+      </mat-form-field>
+      <mat-form-field>
+        <textarea matInput placeholder="Description" type="text" name="description"
+                  [(ngModel)]="task.description"></textarea>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Deadline: e.g. 2019-12-20" type="text" name="deadline" #deadline="ngModel"
+               [(ngModel)]="task.deadline" required
+               pattern="([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))"
+               [ngClass]="{'is-valid': deadline.valid,
+               'is-invalid': deadline.invalid}"
+        />
+      </mat-form-field>
+    </div>
+    <button type="submit" mat-raised-button color="primary" [disabled]="form.invalid">Create
+      Task
+    </button>
+  </form>
+  <app-project [project]="project" (projectChange)="updateProject($event)"></app-project>
+  </ng-container>
