@@ -1,1 +1,18 @@
-<p>project-home works!</p>
+<ng-container *ngIf="projects.length > 0">
+  <mat-list>
+    <h1>Projects</h1>
+    <ng-container *ngFor="let project of projects">
+    <mat-list-item>
+      <mat-icon mat-list-icon>assessment</mat-icon>
+      <p mat-line>{{project.name}} - Due to:  {{project.deadline | date}} </p>
+      <button mat-raised-button color="warn" routerLink="/{{project.id}}/issues">
+        [{{project.tasks.length}}] Issues
+      </button>
+      <button mat-icon-button color="warn">
+        <mat-icon aria-label="Delete" (click)="deleteProject(project.id)">delete</mat-icon>
+      </button>
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </ng-container>
+  </mat-list>
+  </ng-container>

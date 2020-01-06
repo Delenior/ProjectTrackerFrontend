@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Project} from '../models/project';
+import {ProjectService} from '../project.service';
 
 @Component({
   selector: 'app-project-home',
@@ -7,9 +9,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectHomeComponent implements OnInit {
 
-  constructor() { }
+  projects: Array<Project> = [];
 
-  ngOnInit() {
+  constructor(private projectService: ProjectService) {
   }
 
+  ngOnInit() {
+    this.getProjects();
+  }
+
+  getProjects() {
+    this.projectService.getAllProjects().subscribe(
+      response => {
+        this.projects = response;
+      },
+      error => {
+        // TODO: Error message
+      }
+    );
+  }
+
+  deleteProject(id: string) {
+    this.projectService.delete(id).subscribe(
+      response => {
+        this.projects = response;
+        // TODO: Success message
+      },
+      error => {
+        // TODO: Error message
+      }
+    );
+  }
 }

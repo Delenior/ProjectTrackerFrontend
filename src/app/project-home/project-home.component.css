@@ -1,0 +1,10 @@
+projects-home.component.css
+
+input {
+  border: 0px;
+  cursor: pointer;
+}
+h1 {
+  display: flex;
+  justify-content: center;
+}

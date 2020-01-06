@@ -7,11 +7,12 @@ import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
-import { MatIconModule, MatToolbarModule, MatButtonModule } from '@angular/material';
+import { MatIconModule, MatToolbarModule, MatButtonModule, MatListModule, MatDividerModule, MatInputModule } from '@angular/material';
 import { ProjectHomeComponent } from './project-home/project-home.component';
 import { ProjectTasksComponent } from './project-tasks/project-tasks.component';
 import { NewProjectFormComponent } from './new-project-form/new-project-form.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,11 @@ import { NotFoundComponent } from './not-found/not-found.component';
     FormsModule,
     MatIconModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    HttpClientModule,
+    MatListModule,
+    MatDividerModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,22 @@
-<p>new-project-form works!</p>
+<h1>
+  <mat-icon>fiber_new</mat-icon>
+  Create a new Project
+</h1>
+<form #form="ngForm" (ngSubmit)="onSubmit()">
+  <div class="example-container">
+    <mat-form-field>
+      <input matInput placeholder="Project Name" type="text" name="name" [(ngModel)]="project.name" #name="ngModel"
+             minlength="3" required
+             [ngClass]="{'is-valid': name.valid && (name.dirty || name.touched),
+             'is-invalid': name.invalid && (name.dirty || name.touched)}">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Deadline: yyyy-MM-dd" type="text" name="deadline" [(ngModel)]="project.deadline"
+             required
+             pattern="([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))" #deadline="ngModel"
+             [ngClass]="{'is-valid': deadline.valid && (deadline.dirty || deadline.touched),
+             'is-invalid': deadline.invalid && (deadline.dirty || deadline.touched)}"/>
+    </mat-form-field>
+  </div>
+  <button type="submit" mat-raised-button color="primary" [disabled]="form.invalid">Create Project</button>
+</form>
