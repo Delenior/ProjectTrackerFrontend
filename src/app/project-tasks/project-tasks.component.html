@@ -1,5 +1,5 @@
 <ng-container *ngIf="project">
-  <button mat-raised-button (click)="setupNewTask()">New Task</button>
+  <button mat-raised-button (click)="setupNewTask()" matTooltip="Create a new Task.">New Task</button>
   <form novalidate #form="ngForm" (ngSubmit)="onSubmit()" *ngIf="newTask">
     <div class="example-container">
       <mat-form-field>
