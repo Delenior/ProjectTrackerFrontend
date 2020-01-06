@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 import { errorSnackBar, taskUpdatedSnackBar } from '../util/snackbar-helper';
 import { MatSnackBar } from '@angular/material';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-project-tasks',
@@ -63,5 +64,9 @@ export class ProjectTasksComponent implements OnInit {
         errorSnackBar(this.snackbar);
       }
     );
+  }
+  drop(event: CdkDragDrop<Array<Task>>) {
+    moveItemInArray(this.project.tasks, event.previousIndex, event.currentIndex);
+    this.updateProject(this.project);
   }
 }
