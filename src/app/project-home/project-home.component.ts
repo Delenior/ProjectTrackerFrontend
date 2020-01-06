@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Project} from '../models/project';
 import {ProjectService} from '../project.service';
+import { MatSnackBar } from '@angular/material';
+import { deleteSnackBar, errorSnackBar } from '../util/snackbar-helper';
 
 @Component({
   selector: 'app-project-home',
@@ -10,8 +12,9 @@ import {ProjectService} from '../project.service';
 export class ProjectHomeComponent implements OnInit {
 
   projects: Array<Project> = [];
+  searchText: string;
 
-  constructor(private projectService: ProjectService) {
+  constructor(private projectService: ProjectService, private snackbar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -24,7 +27,7 @@ export class ProjectHomeComponent implements OnInit {
         this.projects = response;
       },
       error => {
-        // TODO: Error message
+        errorSnackBar(this.snackbar);
       }
     );
   }
@@ -33,10 +36,10 @@ export class ProjectHomeComponent implements OnInit {
     this.projectService.delete(id).subscribe(
       response => {
         this.projects = response;
-        // TODO: Success message
+        deleteSnackBar(this.snackbar);
       },
       error => {
-        // TODO: Error message
+        errorSnackBar(this.snackbar);
       }
     );
   }

@@ -5,6 +5,7 @@ import { ProjectService } from '../project.service';
 import { ProjectTasksComponent } from '../project-tasks/project-tasks.component';
 import { ActivatedRoute } from '@angular/router';
 import { EventEmitter } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 
 
 @Component({
@@ -19,8 +20,8 @@ export class ProjectComponent extends ProjectTasksComponent {
 
   @Output() projectChange: EventEmitter<Project> = new EventEmitter();
 
-  constructor(projectService: ProjectService, route: ActivatedRoute) {
-    super(projectService, route);
+  constructor(projectService: ProjectService, route: ActivatedRoute, snackbar: MatSnackBar) {
+    super(projectService, route, snackbar);
    }
 
 

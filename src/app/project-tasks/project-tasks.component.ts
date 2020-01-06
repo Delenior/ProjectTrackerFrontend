@@ -4,6 +4,8 @@ import {Task} from '../models/task';
 import { Project } from '../models/project';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup } from '@angular/forms';
+import { errorSnackBar, taskUpdatedSnackBar } from '../util/snackbar-helper';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-project-tasks',
@@ -17,25 +19,26 @@ export class ProjectTasksComponent implements OnInit {
   newTask: boolean;
   task: Task;
 
-  constructor(private projectService: ProjectService, private route: ActivatedRoute) {
+  constructor(private projectService: ProjectService, private route: ActivatedRoute, private snackbar: MatSnackBar) {
   }
 
   ngOnInit() {
     this.getProject();
     this.newTask = false;
+
   }
 
   getProject() {
-    const projectId = this.route.snapshot.params['id'];
-     this.projectService.getProjectById(projectId).subscribe(
-       response => {
-         this.project = response;
-       },
-       error => {
-          // TODO: Error msg
-       }
-     );
-  }
+    this.projectService.getProjectById(this.route.snapshot.params['id']).subscribe(
+      response => {
+        this.project = response;
+        console.log(response);
+      },
+      error => {
+         errorSnackBar(this.snackbar);
+      }
+    );
+ }
 
   setupNewTask() {
     this.task = new Task();
@@ -54,10 +57,10 @@ export class ProjectTasksComponent implements OnInit {
     this.projectService.updateProject(project).subscribe(
       response => {
         this.project = response;
-        // Success msg
+        taskUpdatedSnackBar(this.snackbar);
       },
       error => {
-        // Error msg
+        errorSnackBar(this.snackbar);
       }
     );
   }

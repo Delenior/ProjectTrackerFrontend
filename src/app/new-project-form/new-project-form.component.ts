@@ -3,6 +3,9 @@ import {Project} from '../models/project';
 import {ProjectService} from '../project.service';
 import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
+import { NewProjectSnackBarComponent } from '../snackbars/new-project-snack-bar/new-project-snack-bar.component';
+import { MatSnackBar } from '@angular/material';
+import { newProjectSnackBar, errorSnackBar } from '../util/snackbar-helper';
 
 
 
@@ -16,18 +19,18 @@ export class NewProjectFormComponent {
   project: Project = new Project();
   @ViewChild('form', null) form: FormGroup;
 
-  constructor(private projectService: ProjectService, private router: Router) {
+  constructor(private projectService: ProjectService, private router: Router, private snackbar: MatSnackBar) {
   }
 
   onSubmit() {
     if (this.form.valid) {
       this.projectService.createProject({...this.form.value, tasks: []} as Project).subscribe(
         res => [
-          // TODO: Success msg
-          this.router.navigateByUrl('projects')
+          newProjectSnackBar(this.snackbar),
+        this.router.navigateByUrl('projects')
         ],
         error => {
-          // TODO: Error msg
+          errorSnackBar(this.snackbar);
         }
         );
       }

@@ -1,11 +1,15 @@
 <ng-container *ngIf="projects.length > 0">
   <mat-list>
     <h1>Projects</h1>
-    <ng-container *ngFor="let project of projects">
+    <mat-form-field>
+      <input matInput placeholder="Search Projects" [(ngModel)]="searchText">
+    </mat-form-field>
+    <ng-container *ngFor="let project of projects | filterProject: searchText">
     <mat-list-item>
       <mat-icon mat-list-icon>assessment</mat-icon>
       <p mat-line>{{project.name}} - Due to:  {{project.deadline | date}} </p>
-      <button mat-raised-button color="warn" matTooltip="{{project.name}} Issues Page" routerLink="/{{project.id}}/issues">
+      <button mat-raised-button color="warn" routerLink="/{{project.id}}/issues"
+              matTooltip="{{project.name}} Issues Page">
         [{{project.tasks.length}}] Issues
       </button>
       <button mat-icon-button color="warn">

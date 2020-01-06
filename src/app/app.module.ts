@@ -15,6 +15,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProjectComponent } from './project/project.component';
 import 'hammerjs';
 import { MaterialModule } from 'src/material';
+import { DeleteSnackbarComponent } from './snackbars/delete-snackbar/delete-snackbar.component';
+import { NewProjectSnackBarComponent } from './snackbars/new-project-snack-bar/new-project-snack-bar.component';
+import { ErrorSnackbarComponent } from './snackbars/error-snackbar/error-snackbar.component';
+import { TaskUpdatedSnackbarComponent } from './snackbars/task-updated-snackbar/task-updated-snackbar.component';
+import { FilterProjectPipe } from './filter-project.pipe';
 
 @NgModule({
   declarations: [
@@ -24,8 +29,14 @@ import { MaterialModule } from 'src/material';
     ProjectTasksComponent,
     NewProjectFormComponent,
     NotFoundComponent,
-    ProjectComponent
+    ProjectComponent,
+    DeleteSnackbarComponent,
+    NewProjectSnackBarComponent,
+    ErrorSnackbarComponent,
+    TaskUpdatedSnackbarComponent,
+    FilterProjectPipe
   ],
+  entryComponents: [DeleteSnackbarComponent, ErrorSnackbarComponent, NewProjectSnackBarComponent, TaskUpdatedSnackbarComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
